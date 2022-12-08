@@ -38,7 +38,7 @@ tests = [
 
 def adapt_spans(spans):
     for start, stop in spans:
-        yield Span(start, stop, type=None)
+        yield Span(start, stop, type=None, proba=None)
 
 
 @pytest.mark.parametrize('test', tests)

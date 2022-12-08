@@ -25,7 +25,7 @@ class NERMarkup(Record):
 
 def adapt_spans(spans):
     for span in spans:
-        yield Span(span.start, span.stop, span.type)
+        yield Span(span.start, span.stop, span.type, span.proba)
 
 
 def adapt_markup(markup):

@@ -3,12 +3,12 @@ from .record import Record
 
 
 class Span(Record):
-    __attributes__ = ['start', 'stop', 'type']
+    __attributes__ = ['start', 'stop', 'type' , 'proba']
 
 
 def adapt_spans(spans):
     for span in spans:
-        yield Span(span.start, span.stop, span.type)
+        yield Span(span.start, span.stop, span.type, span.proba)
 
 
 def offset_spans(spans, offset):
@@ -16,7 +16,8 @@ def offset_spans(spans, offset):
         yield Span(
             offset + span.start,
             offset + span.stop,
-            span.type
+            span.type,
+            span.proba
         )
 
 

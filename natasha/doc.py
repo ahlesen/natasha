@@ -53,20 +53,21 @@ class DocFact(Record):
 
 
 class DocSpan(Record):
-    __attributes__ = ['start', 'stop', 'type', 'text',
+    __attributes__ = ['start', 'stop', 'type', 'text', 'proba',
                       'tokens', 'normal', 'fact']
     __annotations__ = {
         'tokens': [DocToken],
         'fact': DocFact
     }
 
-    def __init__(self, start, stop, type, text,
+    def __init__(self, start, stop, type, text, proba,
                  tokens=None, normal=None, fact=None):
         self.start = start
         self.stop = stop
         self.type = type
         self.text = text
-
+        self.proba = proba
+        
         self.tokens = tokens
         self.normal = normal
         self.fact = fact
@@ -249,9 +250,9 @@ def parse_syntax_doc(doc, parser):
 
 
 def adapt_spans(doc, spans):
-    for start, stop, type in spans:
+    for start, stop, type, proba in spans:
         text = doc.text[start:stop]
-        yield DocSpan(start, stop, type, text)
+        yield DocSpan(start, stop, type, text, proba)
 
 
 def tag_ner_doc(doc, tagger):
